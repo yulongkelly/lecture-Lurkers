@@ -8,6 +8,7 @@ class Home extends Component {
       <Router>
         <div>
           <h1 className="header">Welcome to Lecture Lucker</h1>
+          <h2 className ="header2">Are you a student or teacher?</h2>
         </div>
         <button>Teacher</button>
         <button>Student</button>
