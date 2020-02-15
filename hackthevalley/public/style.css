@@ -1,0 +1,11 @@
+.header {
+  text-align: center;
+  background: linear-gradient(blue, pink);
+  height: 300px;
+  font-size: 60px;
+  /* display: flex; */
+  justify-content: center;
+  color: whitesmoke;
+  margin-bottom: 0px;
+  padding-top: 109px;
+}
