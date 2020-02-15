@@ -28,6 +28,7 @@ class Home extends Component {
       <div>
         <div>
           <h1 className="header">Welcome to Lecture Lucker</h1>
+          <h2 className ="header2">Are you a student or teacher?</h2>
         </div>
         {this.renderRedirect()}
         <button onClick={this.setRedirect}>Teacher</button>
