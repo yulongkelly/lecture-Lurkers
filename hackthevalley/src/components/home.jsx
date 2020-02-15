@@ -1,25 +1,39 @@
 import React, { Component } from "react";
-import { Route, Switch, Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import Teacher from "./teacher";
+import { Button } from "react-bootstrap";
 
 class Home extends Component {
   constructor() {
     super();
     this.state = {
-      redirect: false
+      redirect1: false,
+      redirect2: false
     };
-    this.setRedirect = this.setRedirect.bind(this);
+    this.setRedirect1 = this.setRedirect1.bind(this);
+    this.setRedirect2 = this.setRedirect2.bind(this);
   }
-  setRedirect = () => {
+  setRedirect1 = () => {
     this.setState({
-      redirect: true
+      redirect1: true
     });
   };
 
-  renderRedirect = () => {
-    if (this.state.redirect) {
-      return <Redirect to="/teacher" />;
+  renderRedirect1 = () => {
+    if (this.state.redirect1) {
+      return <Redirect to={"/teacherSignIn"} />;
+    }
+  };
+  setRedirect2 = () => {
+    this.setState({
+      redirect2: true
+    });
+  };
+
+  renderRedirect2 = () => {
+    if (this.state.redirect2) {
+      return <Redirect to={"/student"} />;
     }
   };
 
@@ -28,12 +42,35 @@ class Home extends Component {
       <div>
         <div>
           <h1 className="header">Welcome to Lecture Lucker</h1>
-          <h2 className ="header2">Are you a student or teacher?</h2>
+          <br />
+          <h2 style={{ textAlign: "center" }} className="header2">
+            Are you a student or teacher?
+          </h2>
+          <br />
         </div>
-        {this.renderRedirect()}
-        <button onClick={this.setRedirect}>Teacher</button>
+        <div>
+          {this.renderRedirect1()}
+          <Button
+            className="button"
+            variant="primary"
+            name="teacher"
+            onClick={this.setRedirect1}
+          >
+            Teacher
+          </Button>
+        </div>
         <br />
-        <button>Student</button>
+        <div>
+          {this.renderRedirect2()}
+          <Button
+            className="button"
+            variant="primary"
+            name="teacher"
+            onClick={this.setRedirect2}
+          >
+            Student
+          </Button>
+        </div>
       </div>
     );
   }
