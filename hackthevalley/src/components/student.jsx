@@ -1,4 +1,54 @@
 import React, { Component } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Alert";
+import Text from "react-bootstrap/Alert";
+import "./thumb.png";
+import { Row, Col } from "react-bootstrap";
+import InputGroup from "react-bootstrap/InputGroup";
+
+class Count extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0
+    };
+  }
+
+  increment() {
+    this.setState({
+      count: this.state.count + 1
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <button className="inc" onClick={e => this.increment(e)}>
+          <Row>
+            <Col>
+              <img src={require("./thumb.png")} />
+            </Col>
+
+            <Col>
+              <p className="thumbs"> {this.state.count}</p>
+            </Col>
+          </Row>
+        </button>
+      </div>
+    );
+  }
+}
+function Question(props) {
+  return (
+    <div class="card w-75">
+      <div class="card-body">
+        <p class="card-text">{props.text}</p>
+        {<Count />}
+      </div>
+    </div>
+  );
+}
 
 class Student extends Component {
   constructor() {
@@ -41,23 +91,24 @@ class Student extends Component {
         <div id="myForm">
           <h1>Chat</h1>
 
-          <textarea
+          <input
+            type="text"
             onChange={this.handleChange}
             placeholder="Type message.."
             name="msg"
             required
-          ></textarea>
-          <button type="button" class="btn" onClick={this.handleSend}>
+          />
+          <Button variant="primary" onClick={this.handleSend}>
             Send
-          </button>
-          <button type="button" class="btn cancel" onclick="closeForm()">
+          </Button>
+          <Button variant="primary" className="btn cancel">
             Close
-          </button>
+          </Button>
         </div>
 
         <div>
           {this.state.questions.map(question => {
-            return <h1>{question}</h1>;
+            return <Question text={question} />;
           })}
         </div>
       </div>
