@@ -9,27 +9,28 @@ class Home extends Component {
     this.state = {
       redirect: false
     };
-    // this.setRedirect = this.setRedirect.bind(this);
+    this.setRedirect = this.setRedirect.bind(this);
   }
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    });
+  };
 
-  //   setRedirect() {
-  //     browserHistory.push("/teacher");
-  //   }
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to="/teacher" />;
+    }
+  };
 
   render() {
-    const teacher = Teacher();
     return (
       <div>
         <div>
           <h1 className="header">Welcome to Lecture Lucker</h1>
         </div>
-        <button
-          onClick={() => {
-            teacher.goBack();
-          }}
-        >
-          Teacher
-        </button>
+        {this.renderRedirect()}
+        <button onClick={this.setRedirect}>Teacher</button>
         <br />
         <button>Student</button>
       </div>
