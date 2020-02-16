@@ -15,6 +15,7 @@ ReactDOM.render(
     <Route exact path="/teacherSignIn" component={SignIn} />
     <Route exact path="/teacher" component={Teacher} />
     <Route path="/student" component={Student} />
+    <Route path="/teacher-question" component={Teacher} />
   </BrowserRouter>,
   document.getElementById("root")
 );

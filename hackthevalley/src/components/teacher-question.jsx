@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Alert";
 import Text from "react-bootstrap/Alert";
-import "./thumb.png";
+import "./cancel.png";
 import { Row, Col } from "react-bootstrap";
 import InputGroup from "react-bootstrap/InputGroup";
 
@@ -16,19 +16,15 @@ class Count extends Component {
     };
   }
 
-  increment() {
-    this.setState({
-      count: this.state.count + 1
-    });
-  }
+
 
   render() {
     return (
       <div>
-        <button className="inc" onClick={e => this.increment(e)}>
+        <button className="inc" onClick={e => this.remove()}>
           <Row>
             <Col>
-              <img src={require("./thumb.png")} />
+              <img src={require("./cancel.png")} />
             </Col>
 
             <Col>
@@ -40,6 +36,7 @@ class Count extends Component {
     );
   }
 }
+
 function Question(props) {
   return (
     <div className="cardw-75">
@@ -51,12 +48,26 @@ function Question(props) {
   );
 }
 
-class Student extends Component {
+//should be an image???
+function Answer(props){
+    return(
+    <div className="cardw-75">
+      <div class="card-body">
+        <p class="card-text">{props.text}</p>
+        {<Count />}
+      </div>
+    </div>
+    );
+}
+
+
+class TeacherQuestion extends Component {
   constructor() {
     super();
     this.state = {
-      studentType: "",
-      questions: []
+      teacherType: "",
+      questions: [],
+      answers: []
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSend = this.handleSend.bind(this);
@@ -64,17 +75,17 @@ class Student extends Component {
 
   handleChange(event) {
     this.setState({
-      studentType: event.target.value
+        teacherType: event.target.value
     });
   }
 
   handleSend() {
     let currentQuestions = this.state.questions;
-    currentQuestions.push(this.state.studentType);
+    currentQuestions.push(this.state.teacherType);
 
     this.setState({
       questions: currentQuestions,
-      studentType: ""
+      teacherType: ""
     });
   }
 
@@ -91,17 +102,6 @@ class Student extends Component {
 
         <div id="myForm">
           <h1>Questions</h1>
-
-          <input
-            type="text"
-            onChange={this.handleChange}
-            placeholder="Type message.."
-            name="msg"
-            required
-          />
-          <Button variant="primary" onClick={this.handleSend}>
-            Send
-          </Button>
           <Button variant="primary" className="btn cancel">
             Close
           </Button>
@@ -112,9 +112,20 @@ class Student extends Component {
             return <Question text={question} />;
           })}
         </div>
+
+
+
+          <div>
+            {this.state.answers.map(answer => {
+                return <Answer text = {answer} />;
+            })}
+          </div>
+
+
+
       </div>
     );
   }
 }
 
-export default Student;
+export default TeacherQuestion;
